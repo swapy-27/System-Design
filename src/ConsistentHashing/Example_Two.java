@@ -23,6 +23,8 @@ public class Example_Two {
 
     private ArrayList<StorageNode> nodes;
 
+    private int total_slots = keys.size();
+
     private int hash_fn(String key, int total_slots) throws NoSuchAlgorithmException {
 
         final MessageDigest digest = MessageDigest.getInstance("SHA3-256");
@@ -43,23 +45,6 @@ public class Example_Two {
         return hashSlot;
 
     }
-
-    ;
-//    private static String bytesToHex(byte[] hash) {
-//        StringBuilder hexString = new StringBuilder(2 * hash.length);
-//        for (int i = 0; i < hash.length; i++) {
-//            String hex = Integer.toHexString(0xff & hash[i]);
-//            if(hex.length() == 1) {
-//                hexString.append('0');
-//            }
-//            hexString.append(hex);
-//        }
-//        return hexString.toString();
-//    }
-
-    //hashFn
-
-    //add_node
 
     public int add(StorageNode node) throws Exception {
 
@@ -109,8 +94,10 @@ public class Example_Two {
         int index = bisect_left(this.keys, key);
 
 //    #if key does not exist in the array we raise Exception
-        if index >= len(self._keys) or self._keys[index] != key:
-        raise Exception ("node does not exist")
+
+        if (index >= keys.size() || keys.get(index) != key) {
+            throw new Exception("Node does not exist");
+        }
 
 //    #Perform data migration
 
@@ -123,7 +110,7 @@ public class Example_Two {
     }
 
     //assign
-    public StorageNode assign(String item) {
+    public StorageNode assign(String item) throws NoSuchAlgorithmException {
 
 
         /**    Given an item, the function returns the node it is associated with.
@@ -138,4 +125,13 @@ public class Example_Two {
 // #return the node present at the index
         return this.nodes.get(index);
     }
+
+
+
+    public int bisect_right(ArrayList<Integer> list, int key){return -1;}
+    public int bisect_left(ArrayList<Integer> list, int key){return -1;}
+    public int bisect(ArrayList<Integer> list, int key){return -1;}
+
 }
+
+
